@@ -37,13 +37,25 @@ Do not input:
 
 ## Recommended Workflow
 
-1. Sanitize the question before using Codex.
-2. Run the triage prompt in `triage_question.md`.
-3. Use the triage output to create a focused public research query.
-4. Record sources using `trusted_sources.md`.
-5. Ask Codex to summarize each source with confidence and caveats.
-6. Draft a response using `draft_customer_reply.md`.
-7. Review the answer manually before sending it to a customer.
+PublicCAE Support Copilot uses a five-agent workflow. Each agent has a narrow responsibility so that the final answer is easier to review.
+
+| Agent | Role | Main File | Output |
+|---|---|---|---|
+| Agent 1: Intake Sanitizer | Remove or flag sensitive information and turn the case into a generic technical question. | `triage_question.md` | Sanitized question and redaction notes |
+| Agent 2: Triage Engineer | Structure the issue, identify missing information, and create initial hypotheses. | `triage_question.md` | Triage summary and customer questions |
+| Agent 3: Public Researcher | Search public sources and rank evidence quality. | `trusted_sources.md` | Source log and research memo |
+| Agent 4: Reply Drafter | Draft Japanese and English customer replies from the triage and research notes. | `draft_customer_reply.md` | Customer-ready draft with references |
+| Agent 5: QA Reviewer | Review the draft for confidentiality, unsupported claims, unclear assumptions, and customer-readiness. | `draft_customer_reply.md` | Review checklist and revision requests |
+
+Recommended sequence:
+
+1. Agent 1 sanitizes the question before any analysis.
+2. Agent 2 runs the triage prompt in `triage_question.md`.
+3. Agent 3 uses the triage output to create and execute a focused public research plan.
+4. Agent 3 records sources using `trusted_sources.md`.
+5. Agent 4 drafts a response using `draft_customer_reply.md`.
+6. Agent 5 reviews the answer before it is used with a customer.
+7. The engineer performs the final technical and business review.
 
 ## Standard Output Policy
 
@@ -55,6 +67,16 @@ Every support-oriented answer should separate:
 - Missing information: items needed for a reliable diagnosis.
 - Recommended next steps: checks, settings, experiments, or questions.
 - Sources: public URLs, titles, authors or organizations, and access date when useful.
+
+## Agent Operating Rules
+
+- Each agent should only work from sanitized inputs.
+- Agents must label uncertainty instead of hiding it.
+- Agents must not invent product behavior, known issues, case history, or internal guidance.
+- Agent 3 must rank sources by the levels in `trusted_sources.md`.
+- Agent 4 must not remove caveats just to make the reply sound more confident.
+- Agent 5 should challenge the draft and request revisions when evidence is weak.
+- The human engineer remains responsible for the final answer.
 
 ## Suggested Folder Growth
 

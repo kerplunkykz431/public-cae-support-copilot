@@ -2,6 +2,27 @@
 
 Use this file to rank public sources before drafting a support answer. Prefer official and primary sources, and clearly label weaker sources as supporting context only.
 
+This file is mainly used by Agent 3: Public Researcher, and checked by Agent 5: QA Reviewer.
+
+## Agent 3: Public Researcher Responsibilities
+
+Agent 3 should:
+
+- Convert the triage summary into focused public search queries.
+- Search official Ansys public sources first when available.
+- Use primary technical literature for general engineering principles.
+- Treat forums, videos, and blog posts as supporting context unless they cite stronger sources.
+- Record enough citation detail for another engineer to verify the claim.
+- Mark whether each source supports product behavior, theory, workflow, troubleshooting, or background context.
+- Avoid using login-protected, internal, customer-specific, or confidential material.
+
+Agent 3 should not:
+
+- Draft the final customer reply.
+- Claim that something is a known issue unless a public official source supports it.
+- Use private support knowledge or memory as evidence.
+- Treat a video or forum post as authoritative without corroboration.
+
 ## Source Priority
 
 ### Level 1: Official Ansys Sources
@@ -75,9 +96,40 @@ Rules:
 Use this table when researching.
 
 ```md
-| Priority | Source | URL | Date Accessed | Product / Topic | Key Finding | Confidence | Notes |
-|---|---|---|---|---|---|---|---|
-| L1 |  |  |  |  |  | High / Medium / Low |  |
+| Priority | Source | URL | Date Accessed | Product / Topic | Evidence Type | Key Finding | Confidence | Notes |
+|---|---|---|---|---|---|---|---|---|
+| L1 |  |  |  |  | Product / Theory / Workflow / Troubleshooting / Background |  | High / Medium / Low |  |
+```
+
+## Research Memo Template
+
+```md
+# Public Research Memo
+
+## Technical Question
+
+## Search Queries Used
+- 
+
+## Sources Checked
+| Priority | Source | URL | Evidence Type | Key Finding | Confidence |
+|---|---|---|---|---|---|
+
+## Confirmed Findings
+- 
+
+## Engineering Interpretation
+- 
+
+## Conflicts or Unclear Points
+- 
+
+## Sources Not Used
+- Source:
+- Reason:
+
+## Recommended Direction for Reply Drafter
+- 
 ```
 
 ## Confidence Guide
@@ -119,4 +171,3 @@ Source title, organization or author, URL, date accessed, relevant product/versi
 ```
 
 For customer-facing drafts, cite only public links and keep wording concise. Avoid implying that a public source confirms something it does not explicitly say.
-
